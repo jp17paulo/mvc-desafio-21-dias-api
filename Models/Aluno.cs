@@ -5,67 +5,67 @@ using System.Data.SqlClient;
 
 namespace mvc.Models
 {
-  public partial class Aluno
-  {
-    #region "Propriedades"
-    public int Id { get; set; }
-    public string Nome { get; set; }
-    public string Matricula { get; set; }
-
-    private List<double> notas;
-    public List<double> Notas 
-    { 
-      get
-      {
-        if(this.notas == null) this.notas = new List<double>();
-        return this.notas;
-      }
-      set
-      {
-        this.notas = value;
-      }
-    }
-
-    #endregion
-
-    #region Metodos de instancia
-
-    public string StrNotas()
+    public partial class Aluno
     {
-      return string.Join(", ", this.Notas.ToArray());
-    }
-    public double CalcularMedia()
-    {
-      var somaNotas = 0.0;
-      foreach(var nota in this.Notas)
-      {
-        somaNotas += nota;
-      }
-      return somaNotas / this.Notas.Count;
-    }
+        #region "Propriedades"
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string Matricula { get; set; }
 
-    public string Situacao()
-    {
-      return this.CalcularMedia() >= 7 ? "Aprovado" : "Reprovado";
-    }
+        private List<double> notas;
+        public List<double> Notas
+        {
+            get
+            {
+                if (this.notas == null) this.notas = new List<double>();
+                return this.notas;
+            }
+            set
+            {
+                this.notas = value;
+            }
+        }
 
-    public void Apagar()
-    {
-      Aluno.ApagarPorId(this.Id);
-    }
+        #endregion
 
-    public void Salvar()
-    {
-      if(this.Id > 0)
-      {
-        Aluno.Atualizar(this);
-      }
-      else
-      {
-        Aluno.Incluir(this);
-      }
-    }
+        #region Metodos de instancia
 
-    #endregion
-  }
+        public string StrNotas()
+        {
+            return string.Join(", ", this.Notas.ToArray());
+        }
+        public double CalcularMedia()
+        {
+            var somaNotas = 0.0;
+            foreach (var nota in this.Notas)
+            {
+                somaNotas += nota;
+            }
+            return somaNotas / this.Notas.Count;
+        }
+
+        public string Situacao()
+        {
+            return this.CalcularMedia() >= 7 ? "Aprovado" : "Reprovado";
+        }
+
+        public void Apagar()
+        {
+            Aluno.ApagarPorId(this.Id);
+        }
+
+        public void Salvar()
+        {
+            if (this.Id > 0)
+            {
+                Aluno.Atualizar(this);
+            }
+            else
+            {
+                Aluno.Incluir(this);
+            }
+        }
+
+        #endregion
+    }
 }

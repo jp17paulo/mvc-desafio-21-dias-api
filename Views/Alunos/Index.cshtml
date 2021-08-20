@@ -1,9 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+  ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Alunos</h1>
+  <h1 class="display-4">Alunos</h1>
+</div>
+<div class="text-left" style="
+    margin-bottom: 10px;">
+  <a href="alunos/novo" class="btn btn-success">Novo</a>
 </div>
 <table class="table">
   <thead>
@@ -18,13 +22,18 @@
   <tbody>
     @foreach (var aluno in Model)
     {
-        <tr>
+      <tr>
         <th scope="row">@aluno.Id</th>
         <td>@aluno.Nome</td>
         <td>@aluno.Matricula</td>
         <td>@aluno.StrNotas()</td>
         <td>@aluno.Situacao()</td>
-        </tr>
+        <td>
+          @Html.ActionLink("Editar", "Editar", new { id = aluno.Id }, new { @class = "btn btn-primary" })
+          @Html.ActionLink("Deletar", "aluno", new { id = aluno.Id }, new { @class = "btn btn-danger", onclick =
+        "return confirm('Tem certeza que deseja excluir?');" })
+        </td>
+      </tr>
     }
   </tbody>
 </table>

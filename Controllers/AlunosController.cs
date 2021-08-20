@@ -24,6 +24,50 @@ namespace mvc.Controllers
             return View(Aluno.Todos());
         }
 
+        [Route("/alunos/Novo")]
+        public IActionResult Novo()
+        {
+            return View();
+        }
+
+
+        [Route("/alunos/Incluir")]
+        [HttpPost]
+        public IActionResult Incluir(Aluno aluno)
+        {
+            //Console.WriteLine(aluno.Nome);
+            aluno.Salvar();
+            return Redirect("/alunos");
+        }
+
+
+        [Route("/alunos/Editar")]
+        [HttpGet]
+        public IActionResult Editar(int id)
+        {
+            var aluno = Aluno.BuscarPorId(id);
+            ViewBag.Aluno = aluno;
+            return View();
+        }
+
+        [Route("/alunos/Editar")]
+        [HttpPost]
+        public IActionResult Editar(Aluno aluno)
+        {
+            aluno.Salvar();
+            return View();
+        }
+
+        [Route("/alunos/Excluir")]
+        [HttpPost]
+        public IActionResult Excluir(Aluno aluno)
+        {
+            //Console.WriteLine(aluno.Nome);
+            Aluno.ApagarPorId(aluno.Id);
+
+            return Redirect("/alunos");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
