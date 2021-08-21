@@ -12,7 +12,7 @@
 
   <div class="form-group">
     <label for="id" class="control-label">Id</label>
-    <input id="id" name="nome" class="form-control" placeholder="Digite seu nome..." type="text" value="@aluno.Id">
+    <input id="id" name="id" class="form-control" placeholder="Digite seu nome..." type="text" value="@aluno.Id">
   </div>
   <div class="form-group">
     <label for="nome" class="control-label">Nome</label>
@@ -28,7 +28,7 @@
   <div class="form-group">
     <label for="notas" class="control-label">Notas</label>
     <input id="notas" name="notas" class="form-control" placeholder="Digite suas notas separadas por vírgula"
-      type="text" value="@aluno.Notas">
+      type="text" value="@aluno.StrNotas()">
   </div>
 
   <button type="submit" class="btn btn-primary">Enviar</button>

@@ -55,7 +55,7 @@ namespace mvc.Controllers
         public IActionResult Editar(Aluno aluno)
         {
             aluno.Salvar();
-            return View();
+            return Redirect("/alunos");
         }
 
         [Route("/alunos/Excluir")]
