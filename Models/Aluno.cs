@@ -11,6 +11,8 @@ namespace mvc.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Matricula { get; set; }
+
+        //Criação de atributo para resolver o problema da edição, onde não estava salvando as notas após alteração
         public string notasEditar { get; set; }
         private List<double> notas;
         public List<double> Notas
@@ -35,9 +37,8 @@ namespace mvc.Models
         }
 
 
-        public void CalcularMediaEditar()
+        public void AtualizaNotas()
         {
-            var notasArray = new List<double>();
             foreach (var nota in notasEditar.Split(','))
             {
                 Notas.Add(Convert.ToDouble(nota));
