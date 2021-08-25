@@ -49,7 +49,7 @@ namespace mvc.Models
             sqlCommand.Parameters.AddWithValue("@id", aluno.Id);
             sqlCommand.Parameters.AddWithValue("@nome", aluno.Nome);
             sqlCommand.Parameters.AddWithValue("@matricula", aluno.Matricula);
-            sqlCommand.Parameters.AddWithValue("@notas", string.Join(",", aluno.Notas.ToArray()));
+            sqlCommand.Parameters.AddWithValue("@notas", aluno.notasEditar);
             sqlCommand.ExecuteNonQuery();
 
             sqlConn.Close();
@@ -112,11 +112,11 @@ namespace mvc.Models
             var reader = sqlCommand.ExecuteReader();
             while (reader.Read())
             {
-                var notas = new List<double>();
+                var notasEditar = new List<string>();
                 string strNotas = reader["notas"].ToString();
                 foreach (var nota in strNotas.Split(','))
                 {
-                    notas.Add(Convert.ToDouble(nota));
+                    notasEditar.Add(nota);
                 }
 
                 aluno = new Aluno()
@@ -124,7 +124,7 @@ namespace mvc.Models
                     Id = Convert.ToInt32(reader["id"]),
                     Nome = reader["nome"].ToString(),
                     Matricula = reader["matricula"].ToString(),
-                    Notas = notas,
+                    notasEditar = reader["notas"].ToString(),
                 };
 
             }

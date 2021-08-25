@@ -11,7 +11,7 @@ namespace mvc.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Matricula { get; set; }
-
+        public string notasEditar { get; set; }
         private List<double> notas;
         public List<double> Notas
         {
@@ -29,11 +29,23 @@ namespace mvc.Models
         #endregion
 
         #region Metodos de instancia
-
         public string StrNotas()
         {
             return string.Join(", ", this.Notas.ToArray());
         }
+
+
+        public void CalcularMediaEditar()
+        {
+            var notasArray = new List<double>();
+            foreach (var nota in notasEditar.Split(','))
+            {
+                Notas.Add(Convert.ToDouble(nota));
+            }
+        }
+
+
+
         public double CalcularMedia()
         {
             var somaNotas = 0.0;
