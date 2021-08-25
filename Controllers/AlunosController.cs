@@ -59,13 +59,12 @@ namespace mvc.Controllers
         }
 
         [Route("/alunos/Excluir")]
-        [HttpPost]
-        public IActionResult Excluir(Aluno aluno)
+        public void Excluir(int id)
         {
             //Console.WriteLine(aluno.Nome);
-            Aluno.ApagarPorId(aluno.Id);
+            Aluno.ApagarPorId(id);
 
-            return Redirect("/alunos");
+            Response.Redirect("/alunos");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

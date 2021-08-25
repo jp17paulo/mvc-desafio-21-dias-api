@@ -30,7 +30,7 @@
         <td>@aluno.Situacao()</td>
         <td>
           @Html.ActionLink("Editar", "Editar", new { id = aluno.Id }, new { @class = "btn btn-primary" })
-          @Html.ActionLink("Deletar", "aluno", new { id = aluno.Id }, new { @class = "btn btn-danger", onclick =
+          @Html.ActionLink("Deletar", "Excluir", new { id = aluno.Id }, new { @class = "btn btn-danger", onclick =
         "return confirm('Tem certeza que deseja excluir?');" })
         </td>
       </tr>

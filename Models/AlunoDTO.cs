@@ -110,7 +110,7 @@ namespace mvc.Models
 
             SqlCommand sqlCommand = new SqlCommand($"select * from alunos where id={id}", sqlConn);
             var reader = sqlCommand.ExecuteReader();
-            while (reader.Read())
+            if (reader.Read())
             {
                 var notasEditar = new List<string>();
                 string strNotas = reader["notas"].ToString();
